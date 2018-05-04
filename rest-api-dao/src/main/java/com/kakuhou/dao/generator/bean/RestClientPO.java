@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * 客户端
  *
- * @author guopeng
+ * @author Administrator
  * @date 2018-05-04
  *
  */
 public class RestClientPO implements Serializable {
-    /**  */
+    /** 主键 */
     private String id;
 
     /** 客户端公钥 */

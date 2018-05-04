@@ -22,13 +22,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `rest_client`;
 CREATE TABLE `rest_client` (
-  `id` varchar(32) NOT NULL,
+  `id` varchar(32) NOT NULL COMMENT '主键',
   `public_key` varchar(100) NOT NULL COMMENT '客户端公钥',
   `private_key` varchar(100) NOT NULL COMMENT '客户端私钥',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户端';
 
 -- ----------------------------
 --  Table structure for `rest_client_right`
@@ -45,7 +45,7 @@ CREATE TABLE `rest_client_right` (
   KEY `right_id` (`right_id`),
   CONSTRAINT `rest_client_right_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `rest_client` (`id`) ON DELETE CASCADE,
   CONSTRAINT `rest_client_right_ibfk_2` FOREIGN KEY (`right_id`) REFERENCES `rest_right` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户端权限';
 
 -- ----------------------------
 --  Table structure for `rest_interface`
@@ -61,7 +61,7 @@ CREATE TABLE `rest_interface` (
   PRIMARY KEY (`id`),
   KEY `right_id` (`right_id`),
   CONSTRAINT `rest_interface_ibfk_1` FOREIGN KEY (`right_id`) REFERENCES `rest_right` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='接口列表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='接口列表';
 
 -- ----------------------------
 --  Table structure for `rest_right`
@@ -73,6 +73,6 @@ CREATE TABLE `rest_right` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='权限列表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限列表';
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -1,13 +1,3 @@
-/**   
- * Copyright © 2018 猪八戒. All rights reserved.
- * 
- * @Title: MybatisGeneratorUtil.java 
- * @Prject: java-jinrong-p2p-dao
- * @Package: com.jinrong.p2p.util 
- * @author: guopeng   
- * @date: 2018年1月27日 下午4:14:02 
- * @version: V1.0   
- */
 package org.mybatis.generator.util;
 
 import java.io.File;

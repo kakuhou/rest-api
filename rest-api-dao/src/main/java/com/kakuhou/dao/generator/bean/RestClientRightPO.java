@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * 客户端权限
  *
- * @author guopeng
+ * @author Administrator
  * @date 2018-05-04
  *
  */

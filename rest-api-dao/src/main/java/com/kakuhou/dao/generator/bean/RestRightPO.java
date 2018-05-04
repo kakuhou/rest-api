@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 权限列表
  *
- * @author guopeng
+ * @author Administrator
  * @date 2018-05-04
  *
  */
