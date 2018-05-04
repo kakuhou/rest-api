@@ -9,5 +9,19 @@
 	<artifactId>rest-api-dao</artifactId>
 	<packaging>jar</packaging>
 	<modelVersion>4.0.0</modelVersion>
-	<dependencies></dependencies>
+	<dependencies>
+		<!-- 生成数据库代码 -->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+	</dependencies>
 </project>
