@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- 数据库的相关配置 -->
+	<!-- druid数据库连接池 ——读 -->
+	<bean id="dataSourceSlave" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${db.readonly.url}" />
+		<property name="username" value="${db.readonly.username}" />
+		<property name="password" value="${db.readonly.password}" />
+
+		<!--initialSize: 初始化连接 -->
+		<property name="initialSize" value="${db.initialSize}" />
+		<!--minIdle: 最小空闲连接 -->
+		<property name="minIdle" value="${db.minIdle}" />
+		<!--maxActive: 最大连接数量 -->
+		<property name="maxActive" value="${db.maxActive}" />
+		<!--maxWait: 超时等待时间以毫秒为单位 1000等于60秒 -->
+		<property name="maxWait" value="60000" />
+		<property name="validationQuery" value="${db.validationQuery}" />
+		<property name="testOnBorrow" value="${db.testOnBorrow}" />
+		<property name="testWhileIdle" value="${db.testWhileIdle}" />
+		<property name="testOnReturn" value="${db.testOnReturn}"></property>
+		<property name="timeBetweenEvictionRunsMillis"
+			value="${db.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}" />
+		<property name="logAbandoned" value="${db.logAbandoned}" />
+		<property name="removeAbandoned" value="${db.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${db.removeAbandonedTimeout}" />
+		<property name="filters" value="stat"></property>
+		<property name="connectionProperties" value="druid.stat.slowSqlMillis=100" />
+	</bean>
+
+	<!-- druid数据库连接池 ——读写 -->
+	<bean id="dataSourceMaster" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${db.write.url}" />
+		<property name="username" value="${db.write.username}" />
+		<property name="password" value="${db.write.password}" />
+
+		<!--initialSize: 初始化连接 -->
+		<property name="initialSize" value="${db.initialSize}" />
+		<!--minIdle: 最小空闲连接 -->
+		<property name="minIdle" value="${db.minIdle}" />
+		<!--maxActive: 最大连接数量 -->
+		<property name="maxActive" value="${db.maxActive}" />
+		<!--maxWait: 超时等待时间以毫秒为单位 1000等于60秒 -->
+		<property name="maxWait" value="60000" />
+		<property name="validationQuery" value="${db.validationQuery}" />
+		<property name="testOnBorrow" value="${db.testOnBorrow}" />
+		<property name="testWhileIdle" value="${db.testWhileIdle}" />
+		<property name="testOnReturn" value="${db.testOnReturn}"></property>
+		<property name="timeBetweenEvictionRunsMillis"
+			value="${db.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}" />
+		<property name="logAbandoned" value="${db.logAbandoned}" />
+		<property name="removeAbandoned" value="${db.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${db.removeAbandonedTimeout}" />
+		<property name="filters" value="stat"></property>
+		<property name="connectionProperties" value="druid.stat.slowSqlMillis=100" />
+	</bean>
+
+
+	<!-- 动态数据源 -->
+	<bean id="dataSource" class="com.kakuhou.dao.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="dataSourceMaster" value-ref="dataSourceMaster" />
+				<entry key="dataSourceSlave" value-ref="dataSourceSlave" />
+			</map>
+		</property>
+		<!--默认的数据库连接 -->
+		<property name="defaultTargetDataSource" ref="dataSourceMaster" />
+	</bean>
+
+
+	<!-- 整合spring和 druid -->
+	<bean id="mysessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:com/kakuhou/dao/generator/mapper/*.xml</value>
+				<value>classpath*:com/kakuhou/dao/custom/mapper/*.xml</value>
+			</array>
+		</property>
+	</bean>
+
+
+	<!-- 注入mybatis的interface接口 -->
+	<bean id="ScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.kakuhou.dao.*" />
+		<property name="sqlSessionFactoryBeanName" value="mysessionFactory" />
+	</bean>
+
+
+	<!-- 进行动态数据源注入 -->
+	<bean id="multiDataSourceAspect" class="com.kakuhou.dao.datasource.DataSourceMethodInterceptor" />
+	<aop:config>
+		<aop:aspect ref="multiDataSourceAspect">
+			<aop:pointcut id="tx"
+				expression="execution(* com.kakuhou.biz..*.*(..))" />
+			<aop:before pointcut-ref="tx" method="before" />
+		</aop:aspect>
+	</aop:config>
+
+
+	<!-- 将对应库的事物进行控制 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+
+	<tx:annotation-driven  transaction-manager="transactionManager" />
+
+</beans>
