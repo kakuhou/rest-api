@@ -1,7 +1,11 @@
 package com.kakuhou.utils;
 
 import com.kakuhou.base.Rt;
-
+import com.kakuhou.constant.CodeConst;
+import com.kakuhou.exception.BizException;
+/**
+ * 返回值工具
+ * */
 public class RtUtil {
 	/**
 	 * 创建返回对象
@@ -25,7 +29,7 @@ public class RtUtil {
 	 * 创建成功返回对象
 	 */
 	public static <T> Rt<T> createSuccess() {
-		return create(0, "成功", null);
+		return createSuccess(null);
 	}
 
 	/**
@@ -36,9 +40,17 @@ public class RtUtil {
 	}
 
 	/**
+	 * 创建失败返回对象
+	 */
+	public static <T> Rt<T> createError(BizException e) {
+		return create(e.getCode(), e.getMessage(), null);
+	}
+
+	/**
 	 * 创建系统异常返回对象
 	 */
 	public static <T> Rt<T> createSysError() {
-		return create(99, "系统异常", null);
+		return create(CodeConst.SYS_ERROR, "系统异常", null);
 	}
+
 }
