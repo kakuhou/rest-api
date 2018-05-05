@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PermissionsSetListener implements ApplicationListener<ContextRefreshedEvent> {
-	private static final Logger logger = LoggerFactory.getLogger(PermissionsSetListener.class);
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * @Description: 处理
