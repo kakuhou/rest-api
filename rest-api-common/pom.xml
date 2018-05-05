@@ -9,5 +9,11 @@
 	<artifactId>rest-api-common</artifactId>
 	<packaging>jar</packaging>
 	<modelVersion>4.0.0</modelVersion>
-	<dependencies></dependencies>
+	<dependencies>
+	<dependency>
+			<groupId>com.kakuhou</groupId>
+			<artifactId>rest-api-client</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
 </project>

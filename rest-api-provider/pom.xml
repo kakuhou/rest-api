@@ -11,6 +11,11 @@
 	<artifactId>rest-api-provider</artifactId>
 	<packaging>war</packaging>
 	<dependencies>
+	<dependency>
+			<groupId>com.kakuhou</groupId>
+			<artifactId>rest-api-client</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.kakuhou</groupId>
 			<artifactId>rest-api-biz</artifactId>
