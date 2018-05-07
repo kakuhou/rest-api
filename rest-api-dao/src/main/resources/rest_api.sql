@@ -69,7 +69,7 @@ CREATE TABLE `rest_interface` (
 DROP TABLE IF EXISTS `rest_right`;
 CREATE TABLE `rest_right` (
   `id` varchar(32) NOT NULL COMMENT '主键',
-  `desc` varchar(100) NOT NULL COMMENT '权限描述',
+  `description` varchar(100) NOT NULL COMMENT '权限描述',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)

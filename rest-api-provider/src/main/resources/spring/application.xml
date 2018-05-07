@@ -28,4 +28,5 @@
 	</context:component-scan>
 	<!-- 加载mybatis的数据库配置 -->
 	<import resource="spring-mybatis.xml" />
+	<bean id="messageFilter" class="com.kakuhou.filter.MessageFilter"/>
 </beans>

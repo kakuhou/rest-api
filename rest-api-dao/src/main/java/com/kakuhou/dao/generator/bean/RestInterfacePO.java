@@ -6,8 +6,8 @@ import java.util.Date;
 /**
  * 接口列表
  *
- * @author Administrator
- * @date 2018-05-04
+ * @author guopeng
+ * @date 2018-05-07
  *
  */
 public class RestInterfacePO implements Serializable {

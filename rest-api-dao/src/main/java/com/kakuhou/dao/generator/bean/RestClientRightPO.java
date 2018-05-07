@@ -6,8 +6,8 @@ import java.util.Date;
 /**
  * 客户端权限
  *
- * @author Administrator
- * @date 2018-05-04
+ * @author guopeng
+ * @date 2018-05-07
  *
  */
 public class RestClientRightPO implements Serializable {

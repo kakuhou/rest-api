@@ -20,11 +20,11 @@ import com.kakuhou.utils.RtUtil;
 public class RightController implements RightClient {
 	@Autowired
 	ISysBiz sysBiz;
-	
+
 	/**
-	 * 添加权限
-	 * */
-	@RequestMapping(path = "/addRight", method = { RequestMethod.POST })
+	 * 添加权限组
+	 */
+	@RequestMapping(path = "/addRight", method = RequestMethod.POST)
 	@ResponseBody
 	@Override
 	public Rt<Integer> addRight(AddRightRq rq) throws Exception {

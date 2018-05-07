@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 
-	<classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
+	<classPathEntry location="/Users/guopeng/Documents/repository/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar" />
 
 
 	<context id="MSTables" targetRuntime="MyBatis3" defaultModelType="flat">
@@ -27,7 +27,7 @@
 		</commentGenerator>
 		<!-- 数据库连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/rest_api?useSSL=false&amp;serverTimezone=Hongkong"
-			userId="root" password="123456" />
+			userId="root" password="12345678" />
 
 
 		<!-- 生成模型的包名和位置 -->

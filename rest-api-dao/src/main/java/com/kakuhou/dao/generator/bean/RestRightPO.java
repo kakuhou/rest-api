@@ -6,8 +6,8 @@ import java.util.Date;
 /**
  * 权限列表
  *
- * @author Administrator
- * @date 2018-05-04
+ * @author guopeng
+ * @date 2018-05-07
  *
  */
 public class RestRightPO implements Serializable {
@@ -15,7 +15,7 @@ public class RestRightPO implements Serializable {
     private String id;
 
     /** 权限描述 */
-    private String desc;
+    private String description;
 
     /** 创建时间 */
     private Date createTime;
@@ -33,12 +33,12 @@ public class RestRightPO implements Serializable {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getCreateTime() {
@@ -64,7 +64,7 @@ public class RestRightPO implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", desc=").append(desc);
+        sb.append(", description=").append(description);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
