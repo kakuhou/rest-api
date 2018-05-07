@@ -18,7 +18,7 @@ public class RestInterfacePO implements Serializable {
     private String interfaceUri;
 
     /** 是否加密 */
-    private Boolean encrypt;
+    private Boolean encrypted;
 
     /** 权限id */
     private String rightId;
@@ -47,12 +47,12 @@ public class RestInterfacePO implements Serializable {
         this.interfaceUri = interfaceUri == null ? null : interfaceUri.trim();
     }
 
-    public Boolean getEncrypt() {
-        return encrypt;
+    public Boolean getEncrypted() {
+        return encrypted;
     }
 
-    public void setEncrypt(Boolean encrypt) {
-        this.encrypt = encrypt;
+    public void setEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
     }
 
     public String getRightId() {
@@ -87,7 +87,7 @@ public class RestInterfacePO implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", interfaceUri=").append(interfaceUri);
-        sb.append(", encrypt=").append(encrypt);
+        sb.append(", encrypted=").append(encrypted);
         sb.append(", rightId=").append(rightId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);

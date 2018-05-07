@@ -14,7 +14,7 @@ import com.kakuhou.utils.RtUtil;
 
 /**
  * 系统管理
- */
+ */	
 @Controller
 @RequestMapping(path = "/right")
 public class RightController implements RightClient {

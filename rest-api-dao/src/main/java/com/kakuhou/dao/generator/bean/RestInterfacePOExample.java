@@ -285,63 +285,63 @@ public class RestInterfacePOExample {
             return (Criteria) this;
         }
 
-        public Criteria andEncryptIsNull() {
-            addCriterion("encrypt is null");
+        public Criteria andEncryptedIsNull() {
+            addCriterion("encrypted is null");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptIsNotNull() {
-            addCriterion("encrypt is not null");
+        public Criteria andEncryptedIsNotNull() {
+            addCriterion("encrypted is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptEqualTo(Boolean value) {
-            addCriterion("encrypt =", value, "encrypt");
+        public Criteria andEncryptedEqualTo(Boolean value) {
+            addCriterion("encrypted =", value, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptNotEqualTo(Boolean value) {
-            addCriterion("encrypt <>", value, "encrypt");
+        public Criteria andEncryptedNotEqualTo(Boolean value) {
+            addCriterion("encrypted <>", value, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptGreaterThan(Boolean value) {
-            addCriterion("encrypt >", value, "encrypt");
+        public Criteria andEncryptedGreaterThan(Boolean value) {
+            addCriterion("encrypted >", value, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("encrypt >=", value, "encrypt");
+        public Criteria andEncryptedGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("encrypted >=", value, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptLessThan(Boolean value) {
-            addCriterion("encrypt <", value, "encrypt");
+        public Criteria andEncryptedLessThan(Boolean value) {
+            addCriterion("encrypted <", value, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptLessThanOrEqualTo(Boolean value) {
-            addCriterion("encrypt <=", value, "encrypt");
+        public Criteria andEncryptedLessThanOrEqualTo(Boolean value) {
+            addCriterion("encrypted <=", value, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptIn(List<Boolean> values) {
-            addCriterion("encrypt in", values, "encrypt");
+        public Criteria andEncryptedIn(List<Boolean> values) {
+            addCriterion("encrypted in", values, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptNotIn(List<Boolean> values) {
-            addCriterion("encrypt not in", values, "encrypt");
+        public Criteria andEncryptedNotIn(List<Boolean> values) {
+            addCriterion("encrypted not in", values, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptBetween(Boolean value1, Boolean value2) {
-            addCriterion("encrypt between", value1, value2, "encrypt");
+        public Criteria andEncryptedBetween(Boolean value1, Boolean value2) {
+            addCriterion("encrypted between", value1, value2, "encrypted");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("encrypt not between", value1, value2, "encrypt");
+        public Criteria andEncryptedNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("encrypted not between", value1, value2, "encrypted");
             return (Criteria) this;
         }
 

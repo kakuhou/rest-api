@@ -17,16 +17,17 @@ import com.kakuhou.sys.ISysBiz;
 @Component
 public class PermissionsSetListener implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
-	private ISysBiz sysBiz;
+	ISysBiz sysBiz;
+
 	/**
 	 * @Description: 处理
-	 * @param arg0 
+	 * @param arg0
 	 * @author: guopeng
-	 * @date: 2018年1月30日 上午9:00:12 
+	 * @date: 2018年1月30日 上午9:00:12
 	 */
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent sce) {
-		sysBiz.initInterface(sce);
+		sysBiz.initInterface();
 	}
 
 }

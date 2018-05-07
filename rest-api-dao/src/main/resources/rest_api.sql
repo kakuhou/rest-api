@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `rest_interface`;
 CREATE TABLE `rest_interface` (
   `id` varchar(32) NOT NULL COMMENT '主键',
   `interface_uri` varchar(50) NOT NULL COMMENT '接口地址',
-  `encrypt` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否加密',
+  `encrypted` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否加密',
   `right_id` varchar(32) DEFAULT NULL COMMENT '权限id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
