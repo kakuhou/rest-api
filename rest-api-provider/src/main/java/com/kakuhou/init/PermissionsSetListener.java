@@ -1,10 +1,11 @@
 package com.kakuhou.init;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import com.kakuhou.sys.ISysBiz;
 
 /**
  * 接口集合更新
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PermissionsSetListener implements ApplicationListener<ContextRefreshedEvent> {
-	private Logger log = LoggerFactory.getLogger(this.getClass());
-
+	@Autowired
+	private ISysBiz sysBiz;
 	/**
 	 * @Description: 处理
 	 * @param arg0 
@@ -25,6 +26,7 @@ public class PermissionsSetListener implements ApplicationListener<ContextRefres
 	 */
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent sce) {
+		sysBiz.initInterface(sce);
 	}
 
 }
