@@ -1,8 +1,7 @@
 package com.kakuhou.init;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.kakuhou.sys.ISysBiz;
@@ -15,18 +14,18 @@ import com.kakuhou.sys.ISysBiz;
  * @title 接口集合更新
  */
 @Component
-public class PermissionsSetListener implements ApplicationListener<ContextRefreshedEvent> {
+public class PermissionsSetInit implements InitializingBean {
 	@Autowired
 	ISysBiz sysBiz;
 
 	/**
-	 * @Description: 处理
-	 * @param arg0
+	 * @Description: 初始化
+	 * @throws Exception
 	 * @author: guopeng
-	 * @date: 2018年1月30日 上午9:00:12
+	 * @date: 2018年5月8日 下午2:21:44
 	 */
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent sce) {
+	public void afterPropertiesSet() throws Exception {
 		sysBiz.initInterface();
 	}
 
