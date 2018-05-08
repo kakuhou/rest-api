@@ -51,7 +51,7 @@ public class MessageFilter extends OncePerRequestFilter {
 			filterChain.doFilter(request, response);
 		} else {
 			String clientId = sysBiz.getClientId(request);
-			if (sysBiz.isClientLegal(clientId)) {
+			if (!sysBiz.isClientLegal(clientId)) {
 				writeResponse(response, gson.toJson(RtUtil.createError(CodeConst.UNCERTIFIED_ERROR, "客户端id非法")));
 				return;
 			}
