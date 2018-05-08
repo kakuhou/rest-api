@@ -6,6 +6,13 @@ public class BizException extends Exception{
 	
 	private Integer code;
 
+	public BizException(Integer code,String msg) {
+		super(msg);
+		this.code = code;
+		
+	}
+	
+	
 	public Integer getCode() {
 		return code;
 	}

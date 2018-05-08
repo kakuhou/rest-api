@@ -306,7 +306,7 @@ public class RsaUtil {
 	 * @return 返回base64字符串
 	 * @throws Exception
 	 */
-	public static String signBase64(RSAPrivateKey privateKey, String contentBase64) throws Exception {
+	public static String signBase64(PrivateKey privateKey, String contentBase64) throws Exception {
 		byte[] content = Base64Utils.decode(contentBase64);
 		byte[] signResult = sign(privateKey, content);
 		return Base64Utils.encode(signResult);

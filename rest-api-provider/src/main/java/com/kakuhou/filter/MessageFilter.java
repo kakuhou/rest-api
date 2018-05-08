@@ -11,7 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.google.gson.Gson;
+import com.kakuhou.constant.CodeConst;
+import com.kakuhou.exception.BizException;
 import com.kakuhou.sys.ISysBiz;
+import com.kakuhou.utils.RtUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageFilter extends OncePerRequestFilter {
 	@Autowired
 	private ISysBiz sysBiz;
+
+	private Gson gson = new Gson();
+
 	/**
 	 * @Description: 过滤处理
 	 * @param request
@@ -42,13 +49,33 @@ public class MessageFilter extends OncePerRequestFilter {
 		String uri = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
 		if (!sysBiz.isEncrypted(uri)) {
 			filterChain.doFilter(request, response);
-		}else{
+		} else {
+			String clientId = sysBiz.getClientId(request);
+			if (sysBiz.isClientLegal(clientId)) {
+				writeResponse(response, gson.toJson(RtUtil.createError(CodeConst.UNCERTIFIED_ERROR, "客户端id非法")));
+				return;
+			}
 			MessageHttpServletWrapper wrapper = new MessageHttpServletWrapper(response);
 			filterChain.doFilter(request, wrapper);
-			String result  = new String(wrapper.getByteArray());
-			log.info(result);
+			String result = new String(wrapper.getByteArray());
+			try {
+				writeResponse(response, gson.toJson(sysBiz.buildMsg(clientId, result)));
+			} catch (BizException e) {
+				writeResponse(response, gson.toJson(RtUtil.createError(e)));
+			}
 		}
-		
+
 	}
 
+	/**
+	 * 数据写入
+	 */
+	private void writeResponse(HttpServletResponse response, String body) {
+		try {
+			response.getOutputStream().write(body.getBytes());
+		} catch (Exception e) {
+			log.error("writeResponse error", e);
+		}
+
+	}
 }

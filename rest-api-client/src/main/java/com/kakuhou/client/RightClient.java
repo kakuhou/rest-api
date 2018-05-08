@@ -3,7 +3,7 @@ package com.kakuhou.client;
 import com.kakuhou.base.Rt;
 import com.kakuhou.rq.AddRightRq;
 
-public interface RightClient {
+public interface RightClient extends Client {
 	/**
 	 * 添加权限
 	 * 
