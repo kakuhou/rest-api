@@ -10,6 +10,8 @@
  */
 package com.kakuhou.base;
 
+import lombok.Data;
+
 /**
  * 返回结果
  * 
@@ -17,6 +19,7 @@ package com.kakuhou.base;
  * @date: 2018年5月4日
  * @title 返回结果
  */
+@Data
 public class Rt<T> {
 	/**
 	 * 返回码
@@ -30,24 +33,6 @@ public class Rt<T> {
 	 * 数据
 	 * */
 	private T data;
-	public Integer getCode() {
-		return code;
-	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-	public T getData() {
-		return data;
-	}
-	public void setData(T data) {
-		this.data = data;
-	}
 	
 	
 }

@@ -10,25 +10,18 @@
  */
 package com.kakuhou.base;
 
+import lombok.Data;
+
 /**
  * 请求实体
  * @author: guopeng
  * @date: 2018年5月4日
  * @title  请求实体
  */
+@Data
 public class Rq {
 	/**
 	 * 客户端id
 	 * */
 	private String clientId;
-
-	public String getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
-	}
-	
-	
 }
