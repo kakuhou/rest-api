@@ -17,11 +17,14 @@ public class ClientFactory {
 
 	private static String clientId;
 
-	public static void init(String clientId, String privateKey, String publicKey) {
+	private static String domain;
+
+	public static void init(String domain, String clientId, String privateKey, String publicKey) {
 		try {
 			ClientFactory.publicKey = RsaUtil.loadPublicKey(publicKey);
 			ClientFactory.privateKey = RsaUtil.loadPrivateKey(privateKey);
 			ClientFactory.clientId = clientId;
+			ClientFactory.domain = domain;
 		} catch (Exception e) {
 			log.error("init error", e);
 			throw new RuntimeException(e);
@@ -30,8 +33,8 @@ public class ClientFactory {
 	}
 
 	private static class clinetHolder {
-		private static RightClient rightClient = (RightClient) new RightClientImpl().initClient(publicKey, privateKey,
-				clientId);
+		private static RightClient rightClient = (RightClient) new RightClientImpl().initClient(domain, publicKey,
+				privateKey, clientId);
 	}
 
 	public static RightClient getRightClient() {

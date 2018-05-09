@@ -1,7 +1,5 @@
 package com.kakuhou.aop;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +9,8 @@ import com.kakuhou.base.Rt;
 import com.kakuhou.exception.BizException;
 import com.kakuhou.utils.RtUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
  *
@@ -18,9 +18,9 @@ import com.kakuhou.utils.RtUtil;
  */
 @ControllerAdvice
 @Order(-1)
+@Slf4j
 public class GlobalExceptionHandler {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 拦截业务异常

@@ -27,8 +27,9 @@ public abstract class AbstractClient {
 	private PrivateKey privateKey;
 
 	private String clientId;
+	private String domain;
 
-	public abstract Client initClient(PublicKey publicKey, PrivateKey privateKey, String clientId);
+	public abstract Client initClient(String domain, PublicKey publicKey, PrivateKey privateKey, String clientId);
 
 	public <T> Rt<T> doRequest(Rq rq) throws Exception {
 		String body = gson.toJson(rq);
