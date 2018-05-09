@@ -31,6 +31,7 @@
 		<druid.version>1.0.13</druid.version>
 		<alibaba.fastjson.version>1.2.29</alibaba.fastjson.version>
 		<lombok.version>1.16.18</lombok.version>
+		<validator.version>4.3.1.Final</validator.version>
 	</properties>
 	<build>
 		<pluginManagement>
@@ -64,6 +65,11 @@
 	</build>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${validator.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
@@ -188,6 +194,10 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
 		<!-- spring framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>

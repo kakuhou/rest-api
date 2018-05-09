@@ -9,7 +9,7 @@ import com.kakuhou.client.Client;
 import com.kakuhou.client.RightClient;
 import com.kakuhou.rq.AddRightRq;
 
-public class RightClientImpl extends AbstractClient implements RightClient{
+public class RightClientImpl extends AbstractClient implements RightClient {
 
 	@Override
 	public Rt<Integer> addRight(AddRightRq rq) throws Exception {
@@ -17,12 +17,12 @@ public class RightClientImpl extends AbstractClient implements RightClient{
 	}
 
 	@Override
-	public Client initClient(PublicKey publicKey, PrivateKey privateKey, String clientId) {
+	public Client initClient(String domain, PublicKey publicKey, PrivateKey privateKey, String clientId) {
 		this.setClientId(clientId);
 		this.setPrivateKey(privateKey);
 		this.setPublicKey(publicKey);
+		this.setDomain(domain);
 		return this;
 	}
-
 
 }
