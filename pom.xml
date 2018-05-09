@@ -31,6 +31,7 @@
 		<druid.version>1.0.13</druid.version>
 		<alibaba.fastjson.version>1.2.29</alibaba.fastjson.version>
 		<lombok.version>1.16.18</lombok.version>
+		<okhttp.version>3.3.0</okhttp.version>
 	</properties>
 	<build>
 		<pluginManagement>
@@ -64,6 +65,11 @@
 	</build>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				 <groupId>com.squareup.okhttp3</groupId>
+				 <artifactId>okhttp</artifactId>
+				 <version>${okhttp.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
@@ -183,6 +189,10 @@
 				<groupId>com.google.code.gson</groupId>
 				<artifactId>gson</artifactId>
 				<version>${gson.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>com.squareup.okhttp3</groupId>
+			  <artifactId>okhttp</artifactId>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
