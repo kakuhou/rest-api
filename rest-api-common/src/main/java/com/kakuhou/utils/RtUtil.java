@@ -43,14 +43,14 @@ public class RtUtil {
 	 * 创建失败返回对象
 	 */
 	public static <T> Rt<T> createError(BizException e) {
-		return create(e.getCode(), e.getMessage(), null);
+		return createError(e.getCode(), e.getMessage());
 	}
 
 	/**
 	 * 创建系统异常返回对象
 	 */
 	public static <T> Rt<T> createSysError() {
-		return create(CodeConst.SYS_ERROR, "系统异常", null);
+		return createError(CodeConst.SYS_ERROR, "系统异常");
 	}
 
 }
