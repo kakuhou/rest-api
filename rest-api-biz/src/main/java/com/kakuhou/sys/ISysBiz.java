@@ -1,7 +1,5 @@
 package com.kakuhou.sys;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.kakuhou.base.Msg;
 import com.kakuhou.exception.BizException;
 
@@ -36,14 +34,6 @@ public interface ISysBiz {
 	 */
 	boolean isClientLegal(String clientId);
 
-	/**
-	 * 获取客户端id
-	 * 
-	 * @param request
-	 *            请求
-	 * @return clientId
-	 */
-	String getClientId(HttpServletRequest request);
 
 	/**
 	 * 构建消息返回体

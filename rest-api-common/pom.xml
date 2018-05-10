@@ -10,10 +10,15 @@
 	<packaging>jar</packaging>
 	<modelVersion>4.0.0</modelVersion>
 	<dependencies>
-	<dependency>
+		<dependency>
 			<groupId>com.kakuhou</groupId>
 			<artifactId>rest-api-client</artifactId>
 			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- org.apache.commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
 </project>

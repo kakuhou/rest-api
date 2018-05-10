@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,6 +14,7 @@ import com.google.gson.Gson;
 import com.kakuhou.constant.CodeConst;
 import com.kakuhou.exception.BizException;
 import com.kakuhou.sys.ISysBiz;
+import com.kakuhou.utils.HttpServletUtil;
 import com.kakuhou.utils.RtUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +46,11 @@ public class MessageFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String uri = StringUtils.removeStart(request.getRequestURI(), request.getContextPath());
+		String uri = HttpServletUtil.getMappingPath();
 		if (!sysBiz.isEncrypted(uri)) {
 			filterChain.doFilter(request, response);
 		} else {
-			String clientId = sysBiz.getClientId(request);
+			String clientId = HttpServletUtil.getClientId();
 			if (!sysBiz.isClientLegal(clientId)) {
 				writeResponse(response, gson.toJson(RtUtil.createError(CodeConst.UNCERTIFIED_ERROR, "客户端id非法")));
 				return;

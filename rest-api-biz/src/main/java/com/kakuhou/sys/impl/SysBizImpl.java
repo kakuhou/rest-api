@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -126,10 +124,6 @@ public class SysBizImpl implements ISysBiz {
 		return false;
 	}
 
-	@Override
-	public String getClientId(HttpServletRequest request) {
-		return request.getHeader("clientId");
-	}
 
 	@Override
 	public Msg buildMsg(String clientId, String body) throws BizException {

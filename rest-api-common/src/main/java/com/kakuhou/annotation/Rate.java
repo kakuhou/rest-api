@@ -17,15 +17,21 @@ import java.lang.annotation.Target;
 
 /**
  * 接口频率
+ * 
  * @author: guopeng
  * @date: 2018年2月24日
- * @title  接口频率
+ * @title 接口频率
  */
-@Target({ElementType.METHOD})
+@Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Rate {
 	/**
-	 * 时间间隔 单位毫秒
-	 * */
-	long interval();
+	 * 每秒多少许可数
+	 */
+	double permitsPerSecond();
+
+	/**
+	 * 限制范围
+	 */
+	LimitScope scope() default LimitScope.CLIENT;
 }
