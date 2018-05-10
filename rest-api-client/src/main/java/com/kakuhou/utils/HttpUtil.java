@@ -1,7 +1,6 @@
 package com.kakuhou.utils;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -40,10 +39,5 @@ public class HttpUtil {
 			builder.add(k, v);
 		});
 		return builder.build();
-	}
-	
-	
-	public static void main(String args[]) throws IOException {
-		System.out.println(HttpUtil.doPost(new HashMap<>(), new HashMap<>(), "https://baidu.com"));
 	}
 }

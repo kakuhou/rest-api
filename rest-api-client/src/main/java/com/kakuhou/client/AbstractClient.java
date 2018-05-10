@@ -4,13 +4,17 @@ import java.lang.reflect.Type;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SignatureException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kakuhou.base.Msg;
 import com.kakuhou.base.Rq;
 import com.kakuhou.base.Rt;
+import com.kakuhou.base.Url;
 import com.kakuhou.utils.Base64Utils;
+import com.kakuhou.utils.HttpUtil;
 import com.kakuhou.utils.RsaUtil;
 
 import lombok.Getter;
@@ -27,6 +31,7 @@ public abstract class AbstractClient {
 	private PrivateKey privateKey;
 
 	private String clientId;
+
 	private String domain;
 
 	public abstract Client initClient(String domain, PublicKey publicKey, PrivateKey privateKey, String clientId);
@@ -36,13 +41,19 @@ public abstract class AbstractClient {
 		Msg msg = new Msg();
 		msg.setData(Base64Utils.encode(RsaUtil.encryptByPublicKey(body.getBytes(), publicKey)));
 		msg.setSign(RsaUtil.signBase64(privateKey, msg.getData()));
-		Msg reMsg = doHttp(msg, clientId);
+		Url url = rq.getClass().getAnnotation(Url.class);
+		Msg reMsg = doHttp(domain + url.value(), msg, clientId);
 		verify(reMsg);
 		return Msg2Rt(reMsg);
 	}
 
-	private Msg doHttp(Msg msg, String clientId) throws Exception {
-		return null;
+	private Msg doHttp(String url, Msg msg, String clientId) throws Exception {
+		Map<String, String> params = new HashMap<>();
+		params.put("data", msg.getData());
+		params.put("sign", msg.getSign());
+		Map<String, String> headers = new HashMap<>();
+		headers.put("clientId", clientId);
+		return gson.fromJson(HttpUtil.doPost(params, headers, url), Msg.class);
 	}
 
 	private void verify(Msg msg) throws Exception {
