@@ -40,21 +40,23 @@ public class RateLimiterHolder {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					long now = System.currentTimeMillis();
-					List<String> keys = new ArrayList<>();
-					limiterCreateTime.forEach((k, v) -> {
-						if (now - v > EXPIRE_TIME) {
-							keys.add(k);
-						}
-					});
-					keys.forEach((key) -> {
-						limiters.remove(key);
-						limiterCreateTime.remove(key);
-					});
-					Thread.sleep(EXPIRE_TIME);
-				} catch (Throwable e) {
-					log.error("RateLimiterHolder sleep error", e);
+				while (true) {
+					try {
+						long now = System.currentTimeMillis();
+						List<String> keys = new ArrayList<>();
+						limiterCreateTime.forEach((k, v) -> {
+							if (now - v > EXPIRE_TIME) {
+								keys.add(k);
+							}
+						});
+						keys.forEach((key) -> {
+							limiters.remove(key);
+							limiterCreateTime.remove(key);
+						});
+						Thread.sleep(EXPIRE_TIME);
+					} catch (Throwable e) {
+						log.error("RateLimiterHolder sleep error", e);
+					}
 				}
 			}
 		}).start();

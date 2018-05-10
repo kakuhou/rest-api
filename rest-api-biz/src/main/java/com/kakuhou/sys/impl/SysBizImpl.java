@@ -124,7 +124,6 @@ public class SysBizImpl implements ISysBiz {
 		return false;
 	}
 
-
 	@Override
 	public Msg buildMsg(String clientId, String body) throws BizException {
 		RestClientPO clientPO = clientPOMapper.selectByPrimaryKey(clientId);
@@ -161,6 +160,36 @@ public class SysBizImpl implements ISysBiz {
 		} catch (Exception e) {
 			throw new BizException(CodeConst.BIZ_ERROR, "加载私钥失败");
 		}
+	}
+
+	@Override
+	public boolean verify(String clientId, String data, String sign) throws BizException {
+		RestClientPO clientPO = clientPOMapper.selectByPrimaryKey(clientId);
+		if (clientPO == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "ClientId不存在");
+		}
+		try {
+			if (!RsaUtil.verifyBase64(RsaUtil.loadPublicKey(clientPO.getPublicKey()), data, sign)) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			log.error("verifyBase64 error", e);
+		}
+		return false;
+	}
+
+	@Override
+	public String decrpt(String clientId, String data) throws BizException {
+		PrivateKey privateKey = this.getOwnerPrivateKey();
+		try {
+			return new String(RsaUtil.decryptByPrivateKey(Base64Utils.decode(data), privateKey));
+		} catch (Exception e) {
+			log.error("decrpt error", e);
+			throw new BizException(CodeConst.BIZ_ERROR, "数据解密失败");
+		}
+
 	}
 
 }

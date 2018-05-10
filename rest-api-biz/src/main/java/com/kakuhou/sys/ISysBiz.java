@@ -45,4 +45,13 @@ public interface ISysBiz {
 	 * @return Msg消息对象
 	 */
 	Msg buildMsg(String clientId, String body) throws BizException;
+	/**
+	 * 客户端数据验签
+	 * */
+	boolean verify(String clientId,String data,String sign) throws BizException;
+	
+	/**
+	 * 客户端数据解密
+	 * */
+	String decrpt(String clientId,String data) throws BizException;
 }
