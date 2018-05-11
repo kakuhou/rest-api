@@ -37,7 +37,7 @@ import com.kakuhou.utils.RtUtil;
  */
 @Aspect
 @Component
-@Order(3)
+@Order(1)
 public class RateAspect {
 
 	/**

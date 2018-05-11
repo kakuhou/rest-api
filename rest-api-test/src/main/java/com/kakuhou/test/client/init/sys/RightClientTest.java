@@ -29,6 +29,6 @@ public class RightClientTest extends TestInit{
 	public void addRight() throws Exception{
 		AddRightRq rq = new AddRightRq();
 		rq.setDesc("aaaa");
-		client.addRight(rq);
+		System.out.println(client.addRight(rq));
 	}
 }

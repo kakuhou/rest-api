@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kakuhou.base.Msg;
 import com.kakuhou.base.Rq;
 import com.kakuhou.base.Rt;
@@ -36,7 +35,7 @@ public abstract class AbstractClient {
 
 	public abstract Client initClient(String domain, PublicKey publicKey, PrivateKey privateKey, String clientId);
 
-	public <T> Rt<T> doRequest(Rq rq) throws Exception {
+	public <T> Rt<T> doRequest(Rq rq, Type type) throws Exception {
 		String body = gson.toJson(rq);
 		Msg msg = new Msg();
 		msg.setData(Base64Utils.encode(RsaUtil.encryptByPublicKey(body.getBytes(), publicKey)));
@@ -44,7 +43,7 @@ public abstract class AbstractClient {
 		Url url = rq.getClass().getAnnotation(Url.class);
 		Msg reMsg = doHttp(domain + url.value(), msg, clientId);
 		verify(reMsg);
-		return Msg2Rt(reMsg);
+		return Msg2Rt(reMsg, type);
 	}
 
 	private Msg doHttp(String url, Msg msg, String clientId) throws Exception {
@@ -62,10 +61,8 @@ public abstract class AbstractClient {
 		}
 	}
 
-	private <T> Rt<T> Msg2Rt(Msg msg) throws Exception {
+	private <T> Rt<T> Msg2Rt(Msg msg, Type type) throws Exception {
 		String json = new String(RsaUtil.decryptByPrivateKey(Base64Utils.decode(msg.getData()), privateKey));
-		Type type = new TypeToken<T>() {
-		}.getType();
 		return gson.fromJson(json, type);
 	}
 }

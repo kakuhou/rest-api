@@ -22,7 +22,9 @@ public class HttpUtil {
 		Request request = new Request.Builder().url(url).headers(buildHeaders(headers)).post(buildRequestBody(params))
 				.build();
 		Response response = client.newCall(request).execute();
-		return new String(response.body().bytes());
+		String result = new String(response.body().bytes());
+		System.out.println(result);
+		return result;
 	}
 
 	private static Headers buildHeaders(Map<String, String> headers) {

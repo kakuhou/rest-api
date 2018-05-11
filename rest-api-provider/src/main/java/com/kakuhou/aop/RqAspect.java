@@ -47,7 +47,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 @Component
-@Order(3)
+@Order(2)
 public class RqAspect {
 
 	private static Gson gson = new Gson();
@@ -78,7 +78,7 @@ public class RqAspect {
 				String rqStr = sysBiz.decrpt(clientId, data);
 				Rq rq = (Rq) CommonUtil.getTargetObject(joinPoint.getArgs(), Rq.class);
 				if (rq != null) {
-					BeanUtils.copyProperties(gson.fromJson(rqStr, Rq.class), rq);
+					BeanUtils.copyProperties(gson.fromJson(rqStr, rq.getClass()), rq);
 				}
 			} catch (BizException e) {
 				return RtUtil.createError(e);
