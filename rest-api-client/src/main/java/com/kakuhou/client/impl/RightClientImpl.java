@@ -7,7 +7,10 @@ import com.kakuhou.base.Rt;
 import com.kakuhou.client.AbstractClient;
 import com.kakuhou.client.Client;
 import com.kakuhou.client.RightClient;
+import com.kakuhou.rq.AddClientRq;
 import com.kakuhou.rq.AddRightRq;
+import com.kakuhou.rq.BindInterfaceToRightRq;
+import com.kakuhou.rq.ClientBindRightRq;
 
 public class RightClientImpl extends AbstractClient implements RightClient {
 
@@ -23,6 +26,21 @@ public class RightClientImpl extends AbstractClient implements RightClient {
 		this.setPublicKey(publicKey);
 		this.setDomain(domain);
 		return this;
+	}
+
+	@Override
+	public Rt<Integer> bindInterfaceToRight(BindInterfaceToRightRq rq) throws Exception {
+		return this.doRequest(rq);
+	}
+
+	@Override
+	public Rt<Integer> addClient(AddClientRq rq) throws Exception {
+		return this.doRequest(rq);
+	}
+
+	@Override
+	public Rt<Integer> clientBindRight(ClientBindRightRq rq) throws Exception {
+		return this.doRequest(rq);
 	}
 
 }

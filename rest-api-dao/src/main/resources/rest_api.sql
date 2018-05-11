@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `rest_client`;
 CREATE TABLE `rest_client` (
   `id` varchar(32) NOT NULL COMMENT '主键',
   `description` varchar(100) NOT NULL COMMENT '客户端说明',
-  `public_key` varchar(100) NOT NULL COMMENT '客户端公钥',
-  `private_key` varchar(100) NOT NULL COMMENT '客户端私钥',
+  `public_key` varchar(2048) NOT NULL COMMENT '客户端公钥',
+  `private_key` varchar(2048) NOT NULL COMMENT '客户端私钥',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
