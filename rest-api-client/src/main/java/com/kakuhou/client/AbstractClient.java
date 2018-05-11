@@ -64,9 +64,9 @@ public abstract class AbstractClient {
 
 	private <T> Rt<T> Msg2Rt(Msg msg) throws Exception {
 		String json = new String(RsaUtil.decryptByPrivateKey(Base64Utils.decode(msg.getData()), privateKey));
-		Type type2 = new TypeToken<Rt<T>>() {
+		Type type = new TypeToken<Rt<T>>() {
 			private static final long serialVersionUID = 1L;
 		}.getType();
-		return gson.fromJson(json, type2);
+		return gson.fromJson(json, type);
 	}
 }
