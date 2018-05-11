@@ -65,5 +65,9 @@
 			enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
 			<generatedKey column="id" sqlStatement="select  replace(uuid(),'-','')   from dual"  type="pre"/>
 		</table>
+		<table tableName="rest_right_interface" domainObjectName="RestRightInterfacePO" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+			<generatedKey column="id" sqlStatement="select  replace(uuid(),'-','')   from dual"  type="pre"/>
+		</table>
 	</context>
 </generatorConfiguration>

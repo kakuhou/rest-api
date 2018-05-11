@@ -1,5 +1,6 @@
 package com.kakuhou.sys.impl;
 
+import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Date;
@@ -26,11 +27,15 @@ import com.kakuhou.constant.DataSourceConst;
 import com.kakuhou.dao.datasource.DataSource;
 import com.kakuhou.dao.generator.bean.RestClientPO;
 import com.kakuhou.dao.generator.bean.RestClientPOExample;
+import com.kakuhou.dao.generator.bean.RestClientRightPO;
 import com.kakuhou.dao.generator.bean.RestInterfacePO;
 import com.kakuhou.dao.generator.bean.RestInterfacePOExample;
+import com.kakuhou.dao.generator.bean.RestRightInterfacePO;
 import com.kakuhou.dao.generator.bean.RestRightPO;
 import com.kakuhou.dao.generator.mapper.RestClientPOMapper;
+import com.kakuhou.dao.generator.mapper.RestClientRightPOMapper;
 import com.kakuhou.dao.generator.mapper.RestInterfacePOMapper;
+import com.kakuhou.dao.generator.mapper.RestRightInterfacePOMapper;
 import com.kakuhou.dao.generator.mapper.RestRightPOMapper;
 import com.kakuhou.exception.BizException;
 import com.kakuhou.sys.ISysBiz;
@@ -54,18 +59,13 @@ public class SysBizImpl implements ISysBiz {
 	@Autowired
 	private RestInterfacePOMapper interfacePOMapper;
 	@Autowired
+	private RestRightInterfacePOMapper rightInterfacePOMapper;
+	@Autowired
+	private RestClientRightPOMapper clientRightPOMapper;
+	@Autowired
 	RequestMappingHandlerConfig requestMappingHandlerConfig;
 	@Value("${Owner.ClientId}")
 	private String OwnerClientId;
-
-	@DataSource(DataSourceConst.DATASOURCE_MASTER)
-	@Transactional(rollbackFor = Exception.class)
-	@Override
-	public void addRight(String desc) {
-		RestRightPO record = new RestRightPO();
-		record.setDescription(desc);
-		rightPOMapper.insertSelective(record);
-	}
 
 	@DataSource(DataSourceConst.DATASOURCE_MASTER)
 	@Transactional(rollbackFor = Exception.class)
@@ -190,6 +190,106 @@ public class SysBizImpl implements ISysBiz {
 			throw new BizException(CodeConst.BIZ_ERROR, "数据解密失败");
 		}
 
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void addRight(String desc) {
+		RestRightPO record = new RestRightPO();
+		record.setDescription(desc);
+		rightPOMapper.insertSelective(record);
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void delRight(String id) throws BizException {
+		RestRightPO rightPO = rightPOMapper.selectByPrimaryKey(id);
+		if (rightPO == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "权限id不存在");
+		}
+		rightPOMapper.deleteByPrimaryKey(id);
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void updateRight(String id, String desc) throws BizException {
+		RestRightPO rightPO = rightPOMapper.selectByPrimaryKey(id);
+		if (rightPO == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "权限id不存在");
+		}
+		rightPO.setDescription(desc);
+		rightPO.setUpdateTime(new Date());
+		rightPOMapper.updateByPrimaryKeySelective(rightPO);
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void bindInterfaceToRight(List<String> interfaceIds, String rightId) {
+		if (!CollectionUtils.isEmpty(interfaceIds)) {
+			interfaceIds.forEach(id -> {
+				RestRightInterfacePO interfacePO = new RestRightInterfacePO();
+				interfacePO.setInterfaceId(id);
+				interfacePO.setRightId(rightId);
+				rightInterfacePOMapper.insertSelective(interfacePO);
+			});
+		}
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void addClient(String description) {
+		RestClientPO record = new RestClientPO();
+		record.setDescription(description);
+		KeyPair keyPair = RsaUtil.generateRSAKeyPair();
+		record.setPrivateKey(Base64Utils.encode(keyPair.getPrivate().getEncoded()));
+		record.setPublicKey(Base64Utils.encode(keyPair.getPublic().getEncoded()));
+		clientPOMapper.insertSelective(record);
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void delClient(String id) throws BizException {
+		if (clientPOMapper.selectByPrimaryKey(id) == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "客户端id不存在");
+		}
+		clientPOMapper.deleteByPrimaryKey(id);
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void updateClient(String id, String description) throws BizException {
+		RestClientPO clientPO = clientPOMapper.selectByPrimaryKey(id);
+		if (clientPO == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "客户端id不存在");
+		}
+		clientPO.setDescription(description);
+		clientPO.setUpdateTime(new Date());
+		clientPOMapper.updateByPrimaryKeySelective(clientPO);
+	}
+
+	@DataSource(DataSourceConst.DATASOURCE_MASTER)
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void clientBindRight(String clientId, String rightId) throws BizException {
+		RestClientPO clientPO = clientPOMapper.selectByPrimaryKey(clientId);
+		if (clientPO == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "客户端id不存在");
+		}
+		RestRightPO rightPO = rightPOMapper.selectByPrimaryKey(rightId);
+		if (rightPO == null) {
+			throw new BizException(CodeConst.BIZ_ERROR, "权限id不存在");
+		}
+		RestClientRightPO record = new RestClientRightPO();
+		record.setClientId(clientId);
+		record.setRightId(rightId);
+		clientRightPOMapper.insertSelective(record);
 	}
 
 }

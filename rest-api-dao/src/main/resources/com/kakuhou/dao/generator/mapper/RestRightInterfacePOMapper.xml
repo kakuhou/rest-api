@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kakuhou.dao.generator.mapper.RestClientPOMapper" >
-  <resultMap id="BaseResultMap" type="com.kakuhou.dao.generator.bean.RestClientPO" >
+<mapper namespace="com.kakuhou.dao.generator.mapper.RestRightInterfacePOMapper" >
+  <resultMap id="BaseResultMap" type="com.kakuhou.dao.generator.bean.RestRightInterfacePO" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="public_key" property="publicKey" jdbcType="VARCHAR" />
-    <result column="private_key" property="privateKey" jdbcType="VARCHAR" />
+    <result column="right_id" property="rightId" jdbcType="VARCHAR" />
+    <result column="interface_id" property="interfaceId" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -68,16 +67,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, description, public_key, private_key, create_time, update_time
+    id, right_id, interface_id, create_time, update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kakuhou.dao.generator.bean.RestClientPOExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePOExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from rest_client
+    from rest_right_interface
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,45 +90,40 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from rest_client
+    from rest_right_interface
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from rest_client
+    delete from rest_right_interface
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kakuhou.dao.generator.bean.RestClientPOExample" >
-    delete from rest_client
+  <delete id="deleteByExample" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePOExample" >
+    delete from rest_right_interface
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kakuhou.dao.generator.bean.RestClientPO" >
+  <insert id="insert" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePO" >
     <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
       select  replace(uuid(),'-','')   from dual
     </selectKey>
-    insert into rest_client (id, description, public_key, 
-      private_key, create_time, update_time
-      )
-    values (#{id,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{publicKey,jdbcType=VARCHAR}, 
-      #{privateKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+    insert into rest_right_interface (id, right_id, interface_id, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{rightId,jdbcType=VARCHAR}, #{interfaceId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.kakuhou.dao.generator.bean.RestClientPO" >
+  <insert id="insertSelective" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePO" >
     <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
       select  replace(uuid(),'-','')   from dual
     </selectKey>
-    insert into rest_client
+    insert into rest_right_interface
     <trim prefix="(" suffix=")" suffixOverrides="," >
       id,
-      <if test="description != null" >
-        description,
+      <if test="rightId != null" >
+        right_id,
       </if>
-      <if test="publicKey != null" >
-        public_key,
-      </if>
-      <if test="privateKey != null" >
-        private_key,
+      <if test="interfaceId != null" >
+        interface_id,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -140,14 +134,11 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{id,jdbcType=VARCHAR},
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="rightId != null" >
+        #{rightId,jdbcType=VARCHAR},
       </if>
-      <if test="publicKey != null" >
-        #{publicKey,jdbcType=VARCHAR},
-      </if>
-      <if test="privateKey != null" >
-        #{privateKey,jdbcType=VARCHAR},
+      <if test="interfaceId != null" >
+        #{interfaceId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -157,26 +148,23 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kakuhou.dao.generator.bean.RestClientPOExample" resultType="java.lang.Integer" >
-    select count(*) from rest_client
+  <select id="countByExample" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePOExample" resultType="java.lang.Integer" >
+    select count(*) from rest_right_interface
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update rest_client
+    update rest_right_interface
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.rightId != null" >
+        right_id = #{record.rightId,jdbcType=VARCHAR},
       </if>
-      <if test="record.publicKey != null" >
-        public_key = #{record.publicKey,jdbcType=VARCHAR},
-      </if>
-      <if test="record.privateKey != null" >
-        private_key = #{record.privateKey,jdbcType=VARCHAR},
+      <if test="record.interfaceId != null" >
+        interface_id = #{record.interfaceId,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -190,28 +178,24 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update rest_client
+    update rest_right_interface
     set id = #{record.id,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
-      public_key = #{record.publicKey,jdbcType=VARCHAR},
-      private_key = #{record.privateKey,jdbcType=VARCHAR},
+      right_id = #{record.rightId,jdbcType=VARCHAR},
+      interface_id = #{record.interfaceId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kakuhou.dao.generator.bean.RestClientPO" >
-    update rest_client
+  <update id="updateByPrimaryKeySelective" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePO" >
+    update rest_right_interface
     <set >
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
+      <if test="rightId != null" >
+        right_id = #{rightId,jdbcType=VARCHAR},
       </if>
-      <if test="publicKey != null" >
-        public_key = #{publicKey,jdbcType=VARCHAR},
-      </if>
-      <if test="privateKey != null" >
-        private_key = #{privateKey,jdbcType=VARCHAR},
+      <if test="interfaceId != null" >
+        interface_id = #{interfaceId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -222,19 +206,18 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kakuhou.dao.generator.bean.RestClientPO" >
-    update rest_client
-    set description = #{description,jdbcType=VARCHAR},
-      public_key = #{publicKey,jdbcType=VARCHAR},
-      private_key = #{privateKey,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePO" >
+    update rest_right_interface
+    set right_id = #{rightId,jdbcType=VARCHAR},
+      interface_id = #{interfaceId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <insert id="insertBatch" parameterType="java.util.List" >
-    insert into rest_client (id,description,public_key,private_key,create_time,update_time) values  <foreach collection="records" item="item" index="index" separator=","> ( #{item.id,jdbcType=VARCHAR},#{item.description,jdbcType=VARCHAR},#{item.publicKey,jdbcType=VARCHAR},#{item.privateKey,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP} )  </foreach>
+    insert into rest_right_interface (id,right_id,interface_id,create_time,update_time) values  <foreach collection="records" item="item" index="index" separator=","> ( #{item.id,jdbcType=VARCHAR},#{item.rightId,jdbcType=VARCHAR},#{item.interfaceId,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP} )  </foreach>
   </insert>
-  <select id="functionByExample" parameterType="com.kakuhou.dao.generator.bean.RestClientPOExample" resultType="java.lang.Object" >
-    select ${function}(${functionColumn}) from rest_client <if test="_parameter != null" > <include refid="Example_Where_Clause" /> </if>
+  <select id="functionByExample" parameterType="com.kakuhou.dao.generator.bean.RestRightInterfacePOExample" resultType="java.lang.Object" >
+    select ${function}(${functionColumn}) from rest_right_interface <if test="_parameter != null" > <include refid="Example_Where_Clause" /> </if>
   </select>
 </mapper>

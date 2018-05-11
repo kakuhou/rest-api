@@ -7,7 +7,7 @@ import java.util.Date;
  * 权限列表
  *
  * @author guopeng
- * @date 2018-05-07
+ * @date 2018-05-11
  *
  */
 public class RestRightPO implements Serializable {

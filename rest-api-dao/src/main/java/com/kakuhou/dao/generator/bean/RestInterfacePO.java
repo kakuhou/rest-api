@@ -7,7 +7,7 @@ import java.util.Date;
  * 接口列表
  *
  * @author guopeng
- * @date 2018-05-07
+ * @date 2018-05-11
  *
  */
 public class RestInterfacePO implements Serializable {
@@ -19,9 +19,6 @@ public class RestInterfacePO implements Serializable {
 
     /** 是否加密 */
     private Boolean encrypted;
-
-    /** 权限id */
-    private String rightId;
 
     /** 创建时间 */
     private Date createTime;
@@ -55,14 +52,6 @@ public class RestInterfacePO implements Serializable {
         this.encrypted = encrypted;
     }
 
-    public String getRightId() {
-        return rightId;
-    }
-
-    public void setRightId(String rightId) {
-        this.rightId = rightId == null ? null : rightId.trim();
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -88,7 +77,6 @@ public class RestInterfacePO implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", interfaceUri=").append(interfaceUri);
         sb.append(", encrypted=").append(encrypted);
-        sb.append(", rightId=").append(rightId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

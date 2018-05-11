@@ -4,24 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 客户端
+ * 权限接口关联
  *
  * @author guopeng
  * @date 2018-05-11
  *
  */
-public class RestClientPO implements Serializable {
+public class RestRightInterfacePO implements Serializable {
     /** 主键 */
     private String id;
 
-    /** 客户端说明 */
-    private String description;
+    /** 权限id */
+    private String rightId;
 
-    /** 客户端公钥 */
-    private String publicKey;
-
-    /** 客户端私钥 */
-    private String privateKey;
+    /** 接口id */
+    private String interfaceId;
 
     /** 创建时间 */
     private Date createTime;
@@ -39,28 +36,20 @@ public class RestClientPO implements Serializable {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getDescription() {
-        return description;
+    public String getRightId() {
+        return rightId;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setRightId(String rightId) {
+        this.rightId = rightId == null ? null : rightId.trim();
     }
 
-    public String getPublicKey() {
-        return publicKey;
+    public String getInterfaceId() {
+        return interfaceId;
     }
 
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey == null ? null : publicKey.trim();
-    }
-
-    public String getPrivateKey() {
-        return privateKey;
-    }
-
-    public void setPrivateKey(String privateKey) {
-        this.privateKey = privateKey == null ? null : privateKey.trim();
+    public void setInterfaceId(String interfaceId) {
+        this.interfaceId = interfaceId == null ? null : interfaceId.trim();
     }
 
     public Date getCreateTime() {
@@ -86,9 +75,8 @@ public class RestClientPO implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", description=").append(description);
-        sb.append(", publicKey=").append(publicKey);
-        sb.append(", privateKey=").append(privateKey);
+        sb.append(", rightId=").append(rightId);
+        sb.append(", interfaceId=").append(interfaceId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

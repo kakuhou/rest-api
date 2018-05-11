@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RestInterfacePOExample {
+public class RestRightInterfacePOExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -19,7 +19,7 @@ public class RestInterfacePOExample {
 
     protected String function = null;
 
-    public RestInterfacePOExample() {
+    public RestRightInterfacePOExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -215,133 +215,143 @@ public class RestInterfacePOExample {
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriIsNull() {
-            addCriterion("interface_uri is null");
+        public Criteria andRightIdIsNull() {
+            addCriterion("right_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriIsNotNull() {
-            addCriterion("interface_uri is not null");
+        public Criteria andRightIdIsNotNull() {
+            addCriterion("right_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriEqualTo(String value) {
-            addCriterion("interface_uri =", value, "interfaceUri");
+        public Criteria andRightIdEqualTo(String value) {
+            addCriterion("right_id =", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriNotEqualTo(String value) {
-            addCriterion("interface_uri <>", value, "interfaceUri");
+        public Criteria andRightIdNotEqualTo(String value) {
+            addCriterion("right_id <>", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriGreaterThan(String value) {
-            addCriterion("interface_uri >", value, "interfaceUri");
+        public Criteria andRightIdGreaterThan(String value) {
+            addCriterion("right_id >", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriGreaterThanOrEqualTo(String value) {
-            addCriterion("interface_uri >=", value, "interfaceUri");
+        public Criteria andRightIdGreaterThanOrEqualTo(String value) {
+            addCriterion("right_id >=", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriLessThan(String value) {
-            addCriterion("interface_uri <", value, "interfaceUri");
+        public Criteria andRightIdLessThan(String value) {
+            addCriterion("right_id <", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriLessThanOrEqualTo(String value) {
-            addCriterion("interface_uri <=", value, "interfaceUri");
+        public Criteria andRightIdLessThanOrEqualTo(String value) {
+            addCriterion("right_id <=", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriLike(String value) {
-            addCriterion("interface_uri like", value, "interfaceUri");
+        public Criteria andRightIdLike(String value) {
+            addCriterion("right_id like", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriNotLike(String value) {
-            addCriterion("interface_uri not like", value, "interfaceUri");
+        public Criteria andRightIdNotLike(String value) {
+            addCriterion("right_id not like", value, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriIn(List<String> values) {
-            addCriterion("interface_uri in", values, "interfaceUri");
+        public Criteria andRightIdIn(List<String> values) {
+            addCriterion("right_id in", values, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriNotIn(List<String> values) {
-            addCriterion("interface_uri not in", values, "interfaceUri");
+        public Criteria andRightIdNotIn(List<String> values) {
+            addCriterion("right_id not in", values, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriBetween(String value1, String value2) {
-            addCriterion("interface_uri between", value1, value2, "interfaceUri");
+        public Criteria andRightIdBetween(String value1, String value2) {
+            addCriterion("right_id between", value1, value2, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceUriNotBetween(String value1, String value2) {
-            addCriterion("interface_uri not between", value1, value2, "interfaceUri");
+        public Criteria andRightIdNotBetween(String value1, String value2) {
+            addCriterion("right_id not between", value1, value2, "rightId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedIsNull() {
-            addCriterion("encrypted is null");
+        public Criteria andInterfaceIdIsNull() {
+            addCriterion("interface_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedIsNotNull() {
-            addCriterion("encrypted is not null");
+        public Criteria andInterfaceIdIsNotNull() {
+            addCriterion("interface_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedEqualTo(Boolean value) {
-            addCriterion("encrypted =", value, "encrypted");
+        public Criteria andInterfaceIdEqualTo(String value) {
+            addCriterion("interface_id =", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedNotEqualTo(Boolean value) {
-            addCriterion("encrypted <>", value, "encrypted");
+        public Criteria andInterfaceIdNotEqualTo(String value) {
+            addCriterion("interface_id <>", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedGreaterThan(Boolean value) {
-            addCriterion("encrypted >", value, "encrypted");
+        public Criteria andInterfaceIdGreaterThan(String value) {
+            addCriterion("interface_id >", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("encrypted >=", value, "encrypted");
+        public Criteria andInterfaceIdGreaterThanOrEqualTo(String value) {
+            addCriterion("interface_id >=", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedLessThan(Boolean value) {
-            addCriterion("encrypted <", value, "encrypted");
+        public Criteria andInterfaceIdLessThan(String value) {
+            addCriterion("interface_id <", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedLessThanOrEqualTo(Boolean value) {
-            addCriterion("encrypted <=", value, "encrypted");
+        public Criteria andInterfaceIdLessThanOrEqualTo(String value) {
+            addCriterion("interface_id <=", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedIn(List<Boolean> values) {
-            addCriterion("encrypted in", values, "encrypted");
+        public Criteria andInterfaceIdLike(String value) {
+            addCriterion("interface_id like", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedNotIn(List<Boolean> values) {
-            addCriterion("encrypted not in", values, "encrypted");
+        public Criteria andInterfaceIdNotLike(String value) {
+            addCriterion("interface_id not like", value, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedBetween(Boolean value1, Boolean value2) {
-            addCriterion("encrypted between", value1, value2, "encrypted");
+        public Criteria andInterfaceIdIn(List<String> values) {
+            addCriterion("interface_id in", values, "interfaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEncryptedNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("encrypted not between", value1, value2, "encrypted");
+        public Criteria andInterfaceIdNotIn(List<String> values) {
+            addCriterion("interface_id not in", values, "interfaceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInterfaceIdBetween(String value1, String value2) {
+            addCriterion("interface_id between", value1, value2, "interfaceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInterfaceIdNotBetween(String value1, String value2) {
+            addCriterion("interface_id not between", value1, value2, "interfaceId");
             return (Criteria) this;
         }
 

@@ -70,7 +70,9 @@ public class RqAspect {
 			}
 			String rqStr = sysBiz.decrpt(clientId, data);
 			Rq rq = (Rq) CommonUtil.getTargetObject(joinPoint.getArgs(), Rq.class);
-			BeanUtils.copyProperties(gson.fromJson(rqStr, Rq.class), rq);
+			if (rq != null) {
+				BeanUtils.copyProperties(gson.fromJson(rqStr, Rq.class), rq);
+			}
 		} catch (BizException e) {
 			return RtUtil.createError(e);
 		} catch (Exception e) {
