@@ -23,7 +23,6 @@ public class HttpUtil {
 				.build();
 		Response response = client.newCall(request).execute();
 		String result = new String(response.body().bytes());
-		System.out.println(result);
 		return result;
 	}
 
