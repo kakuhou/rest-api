@@ -32,12 +32,12 @@ public class ClientFactory {
 
 	}
 
-	private static class ClienttHolder {
+	private static class ClientHolder {
 		private static RightClient rightClient = (RightClient) new RightClientImpl().initClient(domain, publicKey,
 				privateKey, clientId);
 	}
 
 	public static RightClient getRightClient() {
-		return ClienttHolder.rightClient;
+		return ClientHolder.rightClient;
 	}
 }
