@@ -33,7 +33,7 @@ import com.kakuhou.utils.RtUtil;
  */
 @Aspect
 @Component
-@Order(3)
+@Order(4)
 public class ParamValidateAspect {
 	/**
 	 * 所有标注了@RequestMapping标签的方法切入点
