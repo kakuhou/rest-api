@@ -91,4 +91,8 @@ public interface ISysBiz {
 	 * 客户端数据解密
 	 */
 	String decrpt(String clientId, String data) throws BizException;
+	/**
+	 * 是否有权限
+	 * */
+	boolean hasPermission(String clientId, String uri);
 }

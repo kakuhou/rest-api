@@ -24,6 +24,7 @@ import com.kakuhou.base.Msg;
 import com.kakuhou.config.RequestMappingHandlerConfig;
 import com.kakuhou.constant.CodeConst;
 import com.kakuhou.constant.DataSourceConst;
+import com.kakuhou.dao.custom.mapper.CustomRightMapper;
 import com.kakuhou.dao.datasource.DataSource;
 import com.kakuhou.dao.generator.bean.RestClientPO;
 import com.kakuhou.dao.generator.bean.RestClientPOExample;
@@ -62,6 +63,8 @@ public class SysBizImpl implements ISysBiz {
 	private RestRightInterfacePOMapper rightInterfacePOMapper;
 	@Autowired
 	private RestClientRightPOMapper clientRightPOMapper;
+	@Autowired
+	private CustomRightMapper customRightMapper;
 	@Autowired
 	RequestMappingHandlerConfig requestMappingHandlerConfig;
 	@Value("${Owner.ClientId}")
@@ -290,6 +293,10 @@ public class SysBizImpl implements ISysBiz {
 		record.setClientId(clientId);
 		record.setRightId(rightId);
 		clientRightPOMapper.insertSelective(record);
+	}
+	@Override
+	public boolean hasPermission(String clientId, String uri) {
+		return customRightMapper.hasPermission(clientId, uri) > 0? true:false;
 	}
 
 }
