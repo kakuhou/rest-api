@@ -69,6 +69,11 @@
 				<artifactId>slf4j-api</artifactId>
 				<version>${org.slf4j.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${org.slf4j.version}</version>
+			</dependency>
 			<!-- ====================== Spring framework dependencies ====================== -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -260,6 +265,10 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
 		</dependency>
 		<!-- gson -->
 		<dependency>

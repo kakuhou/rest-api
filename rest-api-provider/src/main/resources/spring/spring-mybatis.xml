@@ -12,7 +12,7 @@
 	<!-- 数据库的相关配置 -->
 	<!-- druid数据库连接池 ——读 -->
 	<bean id="dataSourceSlave" class="com.alibaba.druid.pool.DruidDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<!-- 基本属性 url、user、password -->
 		<property name="url" value="${db.readonly.url}" />
 		<property name="username" value="${db.readonly.username}" />
@@ -42,7 +42,7 @@
 
 	<!-- druid数据库连接池 ——读写 -->
 	<bean id="dataSourceMaster" class="com.alibaba.druid.pool.DruidDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<!-- 基本属性 url、user、password -->
 		<property name="url" value="${db.write.url}" />
 		<property name="username" value="${db.write.username}" />
