@@ -1,5 +1,5 @@
 /**   
- * Copyright © 2018 猪八戒. All rights reserved.
+ * Copyright © 2018 guopeng. All rights reserved.
  * 
  * @Title: ParamValidateAspect.java 
  * @Prject: java-jinrong-p2p-provider
